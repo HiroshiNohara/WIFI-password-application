@@ -5,7 +5,7 @@
 
 
 
-Since Hydrogen and Oxygen Operating System of OnePlus do not support viewing the password of the connected WiFi, I developed this application to achieve this function. Obviously, it needs to work on a phone that already has **Root** privileges to access the `/data/misc/wifi/WifiConfigStore.xml` file.
+Since Hydrogen and Oxygen Operating System for OnePlus do not support viewing the password of the connected WiFi, I developed this application to achieve this function. Obviously, it needs to work on a phone that already has **Root** privileges to access the `/data/misc/wifi/WifiConfigStore.xml` file.
 
 ## Interface
 
@@ -22,7 +22,7 @@ This application is very convenient, click the launcher icon and grant the neces
 	<img src="https://github.com/HiroshiNohara/WIFI-password-application/blob/master/Screenshots/Screenshot1.jpg" alt="Sample"  width="360" height="780">
 </p>
 
-### Custom WiFi QR code
+### Create WiFi QR code
 
 <p align="left">
 	<img src="https://github.com/HiroshiNohara/WIFI-password-application/blob/master/Screenshots/Screenshot2.jpg" alt="Sample"  width="360" height="780">
