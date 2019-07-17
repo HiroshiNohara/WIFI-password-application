@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WIFI密码</string>
+    <string name="app_name">WiFi密码</string>
     <!--zxing-->
     <string name="msg_camera_framework_bug">请在“系统设置”中允许“相机”权限</string>
     <string name="button_ok">确定</string>
@@ -8,28 +8,28 @@
     <string name="close_flash">关闭闪光灯</string>
     <string name="gallery">图库</string>
     <string name="scan_failed_tip">扫描二维码失败，请重试。</string>
-    <string name="retry_scan">请扫描WIFI二维码</string>
+    <string name="retry_scan">请扫描WiFi二维码</string>
 
     <!-- Strings related to function -->
-    <string name="function_create_code">创建WIFI二维码</string>
+    <string name="function_create_code">创建WiFi二维码</string>
     <string name="function_scan_code">扫描二维码</string>
     <string name="function_settings">设置</string>
 
     <!-- Strings related to WifiActivity -->
-    <string name="list_title">WIFI密码</string>
+    <string name="list_title">WiFi密码</string>
     <string name="list_number">个)</string>
-    <string name="scanning_title">扫描到一个WIFI二维码信息</string>
+    <string name="scanning_title">扫描到一个WiFi二维码信息</string>
     <string name="scanning_name">名称: </string>
     <string name="scanning_password">密码: </string>
     <string name="dialog_connect">连接</string>
     <string name="dialog_ok">确定</string>
     <string name="dialog_cancel">取消</string>
     <string name="dialog_known">知道了</string>
-    <string name="denied_location_permission">应用在当前系统下需要开启GPS定位权限以访问正在连接的WIFI。\n\n如果需要使用，
+    <string name="denied_location_permission">应用在当前系统下需要开启GPS定位权限以访问正在连接的WiFi。\n\n如果需要使用，
         请在“系统设置”或授权对话框中允许“位置信息”权限。</string>
     <string name="denied_camera_permission">应用被禁止访问您的相机，将不能正常使用相机相关功能，如扫描二维码。\n\n如果需要使用，
         请在“系统设置”或授权对话框中允许“相机”权限。</string>
-    <string name="open_wifi">请手动打开WIFI开关</string>
+    <string name="open_wifi">请手动打开WiFi开关</string>
     <string name="setRemark">设置备注</string>
     <string name="editRemark">修改备注</string>
     <string name="deleteRemark">取消备注</string>
@@ -39,18 +39,18 @@
     <string name="disableHighlight">取消高亮</string>
     <string name="copy_name_done">已将名称复制到剪贴板</string>
     <string name="copy_password_done">已将密码复制到剪贴板</string>
-    <string name="search_hint">搜索已保存的WIFI</string>
+    <string name="search_hint">搜索已保存的WiFi</string>
     <string name="search_no_find">没有找到相关结果</string>
     <string name="input_remark">请输入备注...</string>
-    <string name="self_code_title">扫一扫连接此WIFI</string>
-    <string name="create_wifi_name">WIFI名称</string>
-    <string name="create_wifi_password">WIFI密码</string>
+    <string name="self_code_title">扫一扫连接此WiFi</string>
+    <string name="create_wifi_name">WiFi名称</string>
+    <string name="create_wifi_password">WiFi密码</string>
     <string name="error_field_required">该项为必填项目</string>
 
     <!-- Strings related to settings -->
     <string name="settings_routine">常规</string>
     <string name="settings_hide_password">不显示密码</string>
-    <string name="settings_hide_wifi">隐藏无密码的WIFI</string>
+    <string name="settings_hide_wifi">隐藏无密码的WiFi</string>
     <string name="settings_user_control">用户控制功能</string>
     <string name="settings_switch_language">切换语言</string>
     <string name="settings_current_language">简体中文</string>

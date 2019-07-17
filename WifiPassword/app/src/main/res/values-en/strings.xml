@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WIFI Password</string>
+    <string name="app_name">WiFi Password</string>
     <!--zxing-->
     <string name="msg_camera_framework_bug">The camera is occupied or has no camera permission, please check</string>
     <string name="button_ok">Exit</string>
@@ -8,28 +8,28 @@
     <string name="close_flash">Turn off the flash</string>
     <string name="gallery">Gallery</string>
     <string name="scan_failed_tip">Scan image failed, please retry.</string>
-    <string name="retry_scan">Please scan WIFI QR code</string>
+    <string name="retry_scan">Please scan WiFi QR code</string>
 
     <!-- Strings related to function -->
-    <string name="function_create_code">Create WIFI QR code</string>
+    <string name="function_create_code">Create WiFi QR code</string>
     <string name="function_scan_code">Scan QR code</string>
     <string name="function_settings">Settings</string>
 
     <!-- Strings related to WifiActivity -->
-    <string name="list_title">WIFI Password</string>
+    <string name="list_title">WiFi Password</string>
     <string name="list_number">\tSaved)</string>
-    <string name="scanning_title">Scan to a WIFI QR code message</string>
-    <string name="scanning_name">WIFI Name: </string>
-    <string name="scanning_password">WIFI Password: </string>
+    <string name="scanning_title">Scan to a WiFi QR code message</string>
+    <string name="scanning_name">WiFi Name: </string>
+    <string name="scanning_password">WiFi Password: </string>
     <string name="dialog_connect">Connect</string>
     <string name="dialog_ok">Ok</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_known">Got it</string>
-    <string name="denied_location_permission">The application needs to enable GPS positioning permission under the current system to access the connected WIFI.
+    <string name="denied_location_permission">The application needs to enable GPS positioning permission under the current system to access the connected WiFi.
         \n\nIf you need to use it, allow the Location Access permission in the System Settings or Authorization dialog.</string>
     <string name="denied_camera_permission">Applications that are prohibited from accessing your camera will not be able to use camera-related features, such as scanning QR codes.
         \n\nIf you need to use it, please allow the Camera permission in the System Settings or authorization dialog.</string>
-    <string name="open_wifi">Please manually turn on the WIFI switch</string>
+    <string name="open_wifi">Please manually turn on the WiFi switch</string>
     <string name="setRemark">Set note</string>
     <string name="editRemark">Modify note</string>
     <string name="deleteRemark">Delete note</string>
@@ -37,20 +37,20 @@
     <string name="copyPassword">Copy password</string>
     <string name="enableHighlight">Highlight</string>
     <string name="disableHighlight">Cancel highlighting</string>
-    <string name="copy_name_done">WIFI name has been copied to the clipboard</string>
-    <string name="copy_password_done">WIFI password has been copied to the clipboard</string>
-    <string name="search_hint">Search for saved WIFI</string>
+    <string name="copy_name_done">WiFi name has been copied to the clipboard</string>
+    <string name="copy_password_done">WiFi password has been copied to the clipboard</string>
+    <string name="search_hint">Search for saved WiFi</string>
     <string name="search_no_find">No results found</string>
     <string name="input_remark">Please enter a note...</string>
-    <string name="self_code_title">Scan to connect to this WIFI</string>
-    <string name="create_wifi_name">WIFI name</string>
-    <string name="create_wifi_password">WIFI password</string>
+    <string name="self_code_title">Scan to connect to this WiFi</string>
+    <string name="create_wifi_name">WiFi name</string>
+    <string name="create_wifi_password">WiFi password</string>
     <string name="error_field_required">This item is required</string>
 
     <!-- Strings related to settings -->
     <string name="settings_routine">Routine</string>
     <string name="settings_hide_password">Do not display password</string>
-    <string name="settings_hide_wifi">Hide WIFI without a password</string>
+    <string name="settings_hide_wifi">Hide WiFi without a password</string>
     <string name="settings_user_control">User control function</string>
     <string name="settings_switch_language">Switch language</string>
     <string name="settings_current_language">English</string>
