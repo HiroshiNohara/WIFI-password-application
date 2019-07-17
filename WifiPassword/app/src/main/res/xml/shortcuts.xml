@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_scanning_shortcut"
+        android:shortcutDisabledMessage="@string/shortcut_disabled"
+        android:shortcutId="shortcut0"
+        android:shortcutLongLabel="@string/scanning_shortcut_long_name"
+        android:shortcutShortLabel="@string/scanning_shortcut_short_name">
+
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.app.wifipassword.zxing.android.CaptureActivity"
+            android:targetPackage="com.app.wifipassword" />
+
+    </shortcut>
+
+</shortcuts>

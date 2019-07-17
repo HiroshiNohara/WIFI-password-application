@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">WIFI密碼</string>
+    <!--zxing-->
+    <string name="msg_camera_framework_bug">請在“系統設置”中允許“相機”權限</string>
+    <string name="button_ok">確定</string>
+    <string name="scan_code">掃描二維碼</string>
+    <string name="open_flash">打開閃光燈</string>
+    <string name="close_flash">關閉閃光燈</string>
+    <string name="gallery">圖庫</string>
+    <string name="scan_failed_tip">掃描二維碼失敗，請重試。</string>
+    <string name="retry_scan">請掃描WIFI二維碼</string>
+
+    <!-- Strings related to function -->
+    <string name="function_create_code">創建WIFI二維碼</string>
+    <string name="function_scan_code">掃描二維碼</string>
+    <string name="function_settings">設置</string>
+
+    <!-- Strings related to WifiActivity -->
+    <string name="list_title">WIFI密碼</string>
+    <string name="list_number">個)</string>
+    <string name="scanning_title">掃描到壹個WIFI二維碼信息</string>
+    <string name="scanning_name">名稱: </string>
+    <string name="scanning_password">密碼: </string>
+    <string name="dialog_connect">連接</string>
+    <string name="dialog_ok">確定</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_known">知道了</string>
+    <string name="denied_location_permission">應用在當前系統下需要開啟GPS定位權限以訪問正在連接的WIFI。\n\n如果需要使用，
+        請在“系統設置”或授權對話框中允許“位置信息”權限。</string>
+    <string name="denied_camera_permission">應用被禁止訪問您的相機，將不能正常使用相機相關功能，如掃描二維碼。\n\n如果需要使用，
+        請在“系統設置”或授權對話框中允許“相機”權限。</string>
+    <string name="open_wifi">請手動打開WIFI開關</string>
+    <string name="setRemark">設置備註</string>
+    <string name="editRemark">修改備註</string>
+    <string name="deleteRemark">取消備註</string>
+    <string name="copyName">復制名稱</string>
+    <string name="copyPassword">復制密碼</string>
+    <string name="enableHighlight">高亮顯示</string>
+    <string name="disableHighlight">取消高亮</string>
+    <string name="copy_name_done">已將名稱復制到剪貼板</string>
+    <string name="copy_password_done">已將密碼復制到剪貼板</string>
+    <string name="search_hint">搜索已保存的WIFI</string>
+    <string name="search_no_find">沒有找到相關結果</string>
+    <string name="input_remark">請輸入備註...</string>
+    <string name="self_code_title">掃壹掃連接此WIFI</string>
+    <string name="create_wifi_name">WIFI名稱</string>
+    <string name="create_wifi_password">WIFI密碼</string>
+    <string name="error_field_required">該項為必填項目</string>
+
+    <!-- Strings related to settings -->
+    <string name="settings_routine">常規</string>
+    <string name="settings_hide_password">不顯示密碼</string>
+    <string name="settings_hide_wifi">隱藏無密碼的WIFI</string>
+    <string name="settings_user_control">用戶控制功能</string>
+    <string name="settings_switch_language">切換語言</string>
+    <string name="settings_current_language">繁體中文</string>
+    <string name="settings_followSystemLanguage">跟隨系統</string>
+
+    <!-- Strings related to shortcuts -->
+    <string name="shortcut_disabled">錯誤</string>
+    <string name="scanning_shortcut_long_name">掃描二維碼</string>
+    <string name="scanning_shortcut_short_name">掃描</string>
+</resources>

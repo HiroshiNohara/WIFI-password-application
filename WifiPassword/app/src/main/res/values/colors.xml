@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1DA1F3</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#9D81CD</color>
+    <color name="grayPrimary">#FAFAFA</color>
+    <color name="cardBackColor">#80000000</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+    <color name="blackText">#000000</color>
+    <color name="colorHighlight">#FFF4B6</color>
+    <color name="launchText">#CCCCCC</color>
+
+    <!--zxing-->
+    <color name="contents_text">#000000</color>
+    <color name="encode_view">#FFFFFF</color>
+    <color name="possible_result_points">#FFBD21</color>
+    <color name="result_minor_text">#C0C0C0</color>
+    <color name="result_points">#99CC00</color>
+    <color name="result_text">#FFFFFF</color>
+    <color name="result_view">#000000</color>
+    <color name="status_text">#FFFFFF</color>
+    <color name="viewfinder_mask">#50000000</color>
+    <color name="react">#FFFFFF</color>
+    <color name="scanLineColor">#FFFFFF</color>
+    <color name="defaultColor">#FFFFFF</color>
+</resources>
