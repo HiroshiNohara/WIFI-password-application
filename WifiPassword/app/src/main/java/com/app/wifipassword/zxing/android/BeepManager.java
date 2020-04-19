@@ -30,10 +30,6 @@ import com.app.wifipassword.R;
 import java.io.Closeable;
 import java.io.IOException;
 
-
-/**
- * 管理声音和震动
- */
 public final class BeepManager implements MediaPlayer.OnCompletionListener,
         MediaPlayer.OnErrorListener, Closeable {
 

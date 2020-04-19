@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -111,11 +112,15 @@ public class WifiAdapter extends RecyclerView.Adapter<WifiAdapter.ViewHolder> {
                 wifiTypeDetail += current;
             }
         }
-        wifiTypeDetail = wifiTypeDetail.substring(wifiName.length());
+        wifiTypeDetail = Build.VERSION.SDK_INT >= 26 ? wifiTypeDetail.substring(wifiName.length()) : wifiTypeDetail;
         WifiManager wifiManager = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
         WifiInfo currentWifi = wifiManager.getConnectionInfo();
         String currentWifiName = currentWifi.getSSID();
-        holder.imageView.setImageResource(currentWifiName.equals(wifi.getWifiName()) ? R.drawable.ic_network_connect : R.drawable.ic_network);
+        if (Build.VERSION.SDK_INT >= 26) {
+            holder.imageView.setImageResource(currentWifiName.equals(wifi.getWifiName()) ? R.drawable.ic_network_connect : R.drawable.ic_network);
+        } else {
+            holder.imageView.setImageResource(currentWifiName.equals("\"" + wifi.getWifiName() + "\"") ? R.drawable.ic_network_connect : R.drawable.ic_network);
+        }
         holder.wifiNameTextView.setText(wifiName);
         holder.wifiPasswordTextView.setText(pref.getBoolean("is_clear_display", false) && !wifiPassword.equals("") ? "******" : wifiPassword);
         holder.wifiTypeTextView.setText(wifiTypeDetail.equals("NONE") ? null : wifiTypeDetail);

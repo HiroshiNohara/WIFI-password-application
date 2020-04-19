@@ -1,6 +1,7 @@
 package com.app.wifipassword.zxing.android;
 
-import android.app.AlertDialog;
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.FeatureInfo;
 import android.content.pm.PackageManager;
@@ -8,6 +9,9 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.AppCompatImageView;
@@ -44,6 +48,7 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
     private com.app.wifipassword.zxing.android.CaptureActivityHandler handler;
     private SurfaceHolder surfaceHolder;
     private String launchMethod;
+    private int REQUEST_CODE_SCAN = 1;
 
     public ViewfinderView getViewfinderView() {
         return viewfinderView;
@@ -80,6 +85,7 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
         try {
             config = (ZxingConfig) getIntent().getExtras().get(Constant.INTENT_ZXING_CONFIG);
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         if (config == null) {
@@ -97,6 +103,9 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
         beepManager.setPlayBeep(config.isPlayBeep());
         beepManager.setVibrate(config.isShake());
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CODE_SCAN);
+        }
 
     }
 
@@ -182,7 +191,6 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
 
         surfaceHolder = previewView.getHolder();
         if (hasSurface) {
-
             initCamera(surfaceHolder);
         } else {
             surfaceHolder.addCallback(this);
@@ -206,20 +214,30 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
                 handler = new CaptureActivityHandler(this, cameraManager);
             }
         } catch (IOException ioe) {
-            displayFrameworkBugMessageAndExit();
+            ioe.printStackTrace();
         } catch (RuntimeException e) {
-            displayFrameworkBugMessageAndExit();
+            e.printStackTrace();
         }
     }
 
-    private void displayFrameworkBugMessageAndExit() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.msg_camera_framework_bug));
-        builder.setPositiveButton(R.string.button_ok, new com.app.wifipassword.zxing.android.FinishListener(this));
-        builder.setOnCancelListener(new com.app.wifipassword.zxing.android.FinishListener(this));
-        builder.show();
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults.length <= 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                new android.support.v7.app.AlertDialog.Builder(this)
+                        .setCancelable(false)
+                        .setMessage(getString(R.string.denied_camera_permission))
+                        .setPositiveButton(getString(R.string.dialog_known), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ActivityCompat.requestPermissions(CaptureActivity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CODE_SCAN);
+                            }
+                        })
+                        .create().show();
+            }
+        }
     }
-
     @Override
     protected void onPause() {
         if (handler != null) {

@@ -34,6 +34,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -67,6 +68,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WifiActivity extends BaseActivity implements WifiAdapter.onItemClickListener {
 
@@ -207,8 +210,11 @@ public class WifiActivity extends BaseActivity implements WifiAdapter.onItemClic
 
     private void initWifiList() {
         wifiList.clear();
-        getWifiInfo();
-        readXml();
+        if (Build.VERSION.SDK_INT >= 26) {
+            readXml();
+        } else {
+            readConf();
+        }
         if (wifiList.size() != 0) {
             List<Wifi> litePalWifi = LitePal.findAll(Wifi.class);
             List<String> wifiListName = new ArrayList<>();
@@ -247,8 +253,9 @@ public class WifiActivity extends BaseActivity implements WifiAdapter.onItemClic
                         hideList.add(i);
                     }
                 }
+                int index = 0;
                 for (int i = 0; i < hideList.size(); i++) {
-                    wifiList.remove(hideList.get(i).intValue());
+                    wifiList.remove(hideList.get(i).intValue() - index++);
                 }
             }
             int index = 0;
@@ -271,7 +278,11 @@ public class WifiActivity extends BaseActivity implements WifiAdapter.onItemClic
             process = Runtime.getRuntime().exec("su");
             dataOutputStream = new DataOutputStream(process.getOutputStream());
             dataInputStream = new DataInputStream(process.getInputStream());
-            dataOutputStream.writeBytes("cat /data/misc/wifi/WifiConfigStore.xml\n");
+            if (Build.VERSION.SDK_INT >= 26) {
+                dataOutputStream.writeBytes("cat /data/misc/wifi/WifiConfigStore.xml\n");
+            } else {
+                dataOutputStream.writeBytes("cat /data/misc/wifi/wpa_supplicant.conf\n");
+            }
             dataOutputStream.writeBytes("exit\n");
             dataOutputStream.flush();
             InputStreamReader inputStreamReader = new InputStreamReader(dataInputStream, "UTF-8");
@@ -300,6 +311,56 @@ public class WifiActivity extends BaseActivity implements WifiAdapter.onItemClic
             }
         }
         return wifiConf.toString();
+    }
+
+    private void readConf() {
+        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        WifiInfo currentWifi = wifiManager.getConnectionInfo();
+        String currentWifiName = currentWifi.getSSID();
+        String wifiConf = getWifiInfo();
+        Pattern wifiNetwork = Pattern.compile("network=\\{([^\\}]+)\\}",
+                Pattern.DOTALL);
+        Matcher wifiNetworkMatcher = wifiNetwork.matcher(wifiConf);
+        while (wifiNetworkMatcher.find()) {
+            String name = "";
+            String password = "";
+            String type = "";
+            String wifiNetworkBlock = wifiNetworkMatcher.group();
+            Pattern wifiName = Pattern.compile("ssid=\"([^\"]+)\"");
+            Matcher wifiNameMatcher = wifiName.matcher(wifiNetworkBlock);
+            if (wifiNameMatcher.find()) {
+                name = wifiNameMatcher.group(1);
+                Pattern wifiPassword = Pattern.compile("psk=\"([^\"]+)\"");
+                Matcher wifiPasswordMatcher = wifiPassword.matcher(wifiNetworkBlock);
+                if (wifiPasswordMatcher.find()) {
+                    password = wifiPasswordMatcher.group(1);
+                }
+                Pattern wifiType = Pattern.compile("key_mgmt=([a-zA-Z_-]+)");
+                Matcher wifiTypeMatcher = wifiType.matcher(wifiNetworkBlock);
+                if (wifiTypeMatcher.find()) {
+                    type = wifiTypeMatcher.group(1);
+                }
+            }
+            Wifi wifi = new Wifi();
+            List<Wifi> findWifi;
+            if (name != null && !name.equals("") && !name.equals("null")) {
+                if (name.equals(currentWifiName)) {
+                    wifi.setWifiName(name);
+                    wifi.setWifiPassword(password);
+                    wifi.setWifiType(type);
+                    findWifi = LitePal.where("wifiname = ?", name).find(Wifi.class);
+                    wifi.setRemark(findWifi.size() == 0 ? null : findWifi.get(0).getRemark());
+                    wifiList.add(0, wifi);
+                } else {
+                    wifi.setWifiName(name);
+                    wifi.setWifiPassword(password);
+                    wifi.setWifiType(type);
+                    findWifi = LitePal.where("wifiname = ?", name).find(Wifi.class);
+                    wifi.setRemark(findWifi.size() == 0 ? null : findWifi.get(0).getRemark());
+                    wifiList.add(wifi);
+                }
+            }
+        }
     }
 
     private void readXml() {
@@ -468,7 +529,7 @@ public class WifiActivity extends BaseActivity implements WifiAdapter.onItemClic
                             .setPositiveButton(getString(R.string.dialog_known), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    ActivityCompat.requestPermissions(WifiActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_CODE_SCAN);
+                                    ActivityCompat.requestPermissions(WifiActivity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CODE_SCAN);
                                 }
                             })
                             .create().show();
@@ -781,6 +842,14 @@ public class WifiActivity extends BaseActivity implements WifiAdapter.onItemClic
                     break;
             }
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            unregisterReceiver(wifiReceiver);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }
