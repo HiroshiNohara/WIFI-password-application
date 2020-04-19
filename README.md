@@ -5,7 +5,7 @@
 
 
 
-Since Hydrogen and Oxygen Operating System for OnePlus do not support viewing the password of the connected WiFi, I developed this application to achieve this function. Obviously, it needs to work on a phone that already has **Root** privileges to access the `/data/misc/wifi/WifiConfigStore.xml` file.
+Since Hydrogen and Oxygen Operating System for OnePlus do not support viewing the password of the connected WiFi, I developed this application to achieve this function. Obviously, it needs to work on a phone that already has **Root** privileges to access the `/data/misc/wifi/WifiConfigStore.xml(wpa_supplicant.conf)` file.
 
 ## Interface
 
@@ -51,9 +51,14 @@ This application is very convenient, click the launcher icon and grant the neces
 - Due to the change of the strategy of the Android 9.0 or higher system, this part of the device needs to provide additional **Location** permission to allow the application to access the information of the currently connected WiFi.
 - This application will only read the `WifiConfigStore.xml` file and will not delete or modify the content.
 - This application uses the WiFi name as the database unique identifier and will not store the saved WiFi password.
-- This application has passed the test on Huawei Mate 9(Android 8.0), Xiaomi Mi 8(Android 9.0) and OnePlus 7(Android 9.0). In theory, it is suitable for Android 8.0 and above.
+- This application has passed the test on Huawei Mate 9(Android 8.0), Xiaomi Mi 8(Android 9.0) and OnePlus 7(Android 9.0).
 
 ## Change logs
+
+### 1.1
+
+- Compatible with systems below Android 8.0
+- Fix known issues
 
 ### 1.0
 
